@@ -1,0 +1,29 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: toolbox
+  datasource:
+    driver-class-name: org.sqlite.JDBC
+    url: "jdbc:sqlite:file:memorydb${random.uuid}?mode=memory&cache=private"
+    hikari:
+      transaction-isolation: TRANSACTION_AUTOCOMMIT
+  jpa:
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+    hibernate:
+      ddl-auto: create-drop
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8
+    fallback-to-system-locale: true
+    use-code-as-default-message: true
+  mvc:
+    locale: zh_CN
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: false

@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(openspec new:*)",
+      "Bash(openspec status:*)",
+      "Bash(openspec instructions:*)",
+      "Bash(mvn clean:*)",
+      "Bash(rm:*)",
+      "Bash(curl:*)",
+      "Bash(netstat:*)",
+      "Bash(openspec sync:*)",
+      "Bash(mkdir:*)",
+      "Bash(mvn test:*)",
+      "Bash(mvn spring-boot:run:*)",
+      "Bash(openspec list:*)",
+      "Bash(sqlite3:*)",
+      "Bash(mvn compile:*)",
+      "Bash(taskkill:*)",
+      "Bash(openspec:*)"
+    ]
+  }
+}

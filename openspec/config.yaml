@@ -1,0 +1,24 @@
+schema: spec-driven
+
+context: |
+  始终使用中文撰写文档和与用户交流，对于代码段或专用词汇，保持英文。
+  后端技术栈：Java21、Maven、Lombok、Spring Boot、RESTful
+
+# Project context (optional)
+# This is shown to AI when creating artifacts.
+# Add your tech stack, conventions, style guides, domain knowledge, etc.
+# Example:
+#   context: |
+#     Tech stack: TypeScript, React, Node.js
+#     We use conventional commits
+#     Domain: e-commerce platform
+
+# Per-artifact rules (optional)
+# Add custom rules for specific artifacts.
+# Example:
+#   rules:
+#     proposal:
+#       - Keep proposals under 500 words
+#       - Always include a "Non-goals" section
+#     tasks:
+#       - Break tasks into chunks of max 2 hours
