@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -195,6 +196,9 @@ public class OperationLogAspect {
             } catch (Exception ignored) {
             }
         }
+
+        // 设置操作时间
+        log.setOperationTime(LocalDateTime.now());
 
         return log;
     }

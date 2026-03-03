@@ -16,7 +16,10 @@
       "Bash(sqlite3:*)",
       "Bash(mvn compile:*)",
       "Bash(taskkill:*)",
-      "Bash(openspec:*)"
+      "Bash(openspec:*)",
+      "Bash(git:*)",
+      "Bash(claude config:*)",
+      "Bash(gh api:*)"
     ]
   }
 }

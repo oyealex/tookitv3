@@ -4,6 +4,8 @@ import com.smartkit.toolbox.model.OperationLog;
 import com.smartkit.toolbox.model.OperationResult;
 import com.smartkit.toolbox.model.OperationType;
 
+import java.time.LocalDateTime;
+
 /**
  * 操作日志静态工具类
  * 提供便捷的静态方法供其他模块调用
@@ -47,6 +49,7 @@ public class OperationLogHelper {
         log.setResult(result);
         log.setOperator(operator);
         log.setOperatorIp(operatorIp);
+        log.setOperationTime(LocalDateTime.now());
 
         operationLogService.logOperation(log);
     }
@@ -79,6 +82,7 @@ public class OperationLogHelper {
         log.setResult(result);
         log.setOperator(operator);
         log.setOperatorIp(operatorIp);
+        log.setOperationTime(LocalDateTime.now());
 
         operationLogService.logOperationAsync(log);
     }
