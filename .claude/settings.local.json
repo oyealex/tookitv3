@@ -19,7 +19,8 @@
       "Bash(openspec:*)",
       "Bash(git:*)",
       "Bash(claude config:*)",
-      "Bash(gh api:*)"
+      "Bash(gh api:*)",
+      "Bash(mv:*)"
     ]
   }
 }
