@@ -8,5 +8,7 @@ public enum OperationType {
     UPDATE,   // 更新操作
     DELETE,   // 删除操作
     IMPORT,   // 导入操作
-    EXPORT    // 导出操作
+    EXPORT,   // 导出操作
+    SCAN,     // 工具扫描
+    EXECUTE   // 工具执行
 }
