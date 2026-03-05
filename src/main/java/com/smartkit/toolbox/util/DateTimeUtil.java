@@ -4,7 +4,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * 时间格式化工具类
+ * 时间格式化工具类，提供日期时间的格式化和解析功能。
+ *
+ * @author SmartKit
+ * @since 1.0.0
  */
 public final class DateTimeUtil {
 
@@ -18,9 +21,19 @@ public final class DateTimeUtil {
      */
     public static final String JSON_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
 
+    /**
+     * 目录名时间格式化器
+     */
     private static final DateTimeFormatter DIR_FORMATTER = DateTimeFormatter.ofPattern(DIR_TIMESTAMP_FORMAT);
+
+    /**
+     * JSON时间格式化器
+     */
     private static final DateTimeFormatter JSON_FORMATTER = DateTimeFormatter.ofPattern(JSON_TIME_FORMAT);
 
+    /**
+     * 私有构造函数，防止实例化
+     */
     private DateTimeUtil() {
         // 工具类不允许实例化
     }

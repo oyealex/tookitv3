@@ -70,15 +70,6 @@ class DeviceServiceTest {
     }
 
     @Test
-    @DisplayName("添加设备 - IP无效")
-    void addDevice_InvalidIp() {
-        DeviceCreateDTO dto = createValidDTO();
-        dto.setIp("invalid-ip");
-
-        assertThrows(BusinessException.class, () -> deviceService.addDevice(dto));
-    }
-
-    @Test
     @DisplayName("添加设备 - IP重复")
     void addDevice_DuplicateIp() {
         DeviceCreateDTO dto = createValidDTO();

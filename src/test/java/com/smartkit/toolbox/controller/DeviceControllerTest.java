@@ -95,6 +95,17 @@ class DeviceControllerTest {
     }
 
     @Test
+    @DisplayName("POST /api/v1/devices - IP格式错误")
+    void addDevice_InvalidIpFormat() throws Exception {
+        validDTO.setIp("invalid-ip");
+
+        mockMvc.perform(post("/api/v1/devices")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(validDTO)))
+            .andExpect(status().isBadRequest());
+    }
+
+    @Test
     @DisplayName("POST /api/v1/devices/batch - 批量添加成功")
     void addDevices_Success() throws Exception {
         BatchResultDTO result = new BatchResultDTO(1, 0, Collections.emptyList());
@@ -118,6 +129,13 @@ class DeviceControllerTest {
     }
 
     @Test
+    @DisplayName("GET /api/v1/devices/{ip} - IP格式错误")
+    void getDevice_InvalidIpFormat() throws Exception {
+        mockMvc.perform(get("/api/v1/devices/invalid-ip"))
+            .andExpect(status().isBadRequest());
+    }
+
+    @Test
     @DisplayName("GET /api/v1/devices - 查询设备列表")
     void getDevices_Success() throws Exception {
         when(deviceService.getDevices(any())).thenReturn(List.of(testDevice));
@@ -135,7 +153,7 @@ class DeviceControllerTest {
     void updateDevice_Success() throws Exception {
         DeviceUpdateDTO updateDTO = new DeviceUpdateDTO();
         updateDTO.setName("Updated Name");
-        
+
         testDevice.setName("Updated Name");
         when(deviceService.updateDevice(any(), any())).thenReturn(testDevice);
 
@@ -147,10 +165,29 @@ class DeviceControllerTest {
     }
 
     @Test
+    @DisplayName("PUT /api/v1/devices/{ip} - IP格式错误")
+    void updateDevice_InvalidIpFormat() throws Exception {
+        DeviceUpdateDTO updateDTO = new DeviceUpdateDTO();
+        updateDTO.setName("Updated Name");
+
+        mockMvc.perform(put("/api/v1/devices/invalid-ip")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(updateDTO)))
+            .andExpect(status().isBadRequest());
+    }
+
+    @Test
     @DisplayName("DELETE /api/v1/devices/{ip} - 删除设备成功")
     void deleteDevice_Success() throws Exception {
         mockMvc.perform(delete("/api/v1/devices/192.168.1.1"))
             .andExpect(status().isOk());
+    }
+
+    @Test
+    @DisplayName("DELETE /api/v1/devices/{ip} - IP格式错误")
+    void deleteDevice_InvalidIpFormat() throws Exception {
+        mockMvc.perform(delete("/api/v1/devices/invalid-ip"))
+            .andExpect(status().isBadRequest());
     }
 
     @Test
@@ -164,5 +201,13 @@ class DeviceControllerTest {
                 .content(objectMapper.writeValueAsString(List.of("192.168.1.1"))))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.data.successCount").value(1));
+    }
+
+    @Test
+    @DisplayName("POST /api/v1/devices/import - 缺少文件")
+    void importDevices_MissingFile() throws Exception {
+        mockMvc.perform(post("/api/v1/devices/import")
+                .contentType(MediaType.MULTIPART_FORM_DATA))
+            .andExpect(status().isBadRequest());
     }
 }

@@ -72,7 +72,7 @@ class OperationLogControllerTest {
     void getOperationLogs_ExceedMaxLimit() throws Exception {
         mockMvc.perform(get("/api/v1/operation-logs")
                 .param("limit", "200"))
-            .andExpect(status().isOk())
+            .andExpect(status().isBadRequest())
             .andExpect(jsonPath("$.code").value(400));
     }
 
@@ -118,6 +118,13 @@ class OperationLogControllerTest {
                 .param("locale", "en_US"))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.code").value(200));
+    }
+
+    @Test
+    @DisplayName("PUT /api/v1/operation-logs/locale - 缺少locale参数")
+    void setLocale_MissingLocale() throws Exception {
+        mockMvc.perform(put("/api/v1/operation-logs/locale"))
+            .andExpect(status().isBadRequest());
     }
 
     @Test

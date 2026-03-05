@@ -15,18 +15,46 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * 操作日志服务
+ * 操作日志服务类，提供操作日志的记录、查询和导出功能。
+ *
+ * @author SmartKit
+ * @since 1.0.0
  */
 @Service
 public class OperationLogService {
 
+    /**
+     * 最大查询数量限制
+     */
     private static final int MAX_LIMIT = 100;
+
+    /**
+     * 默认查询数量
+     */
     private static final int DEFAULT_LIMIT = 20;
 
+    /**
+     * 操作日志仓库
+     */
     private final OperationLogRepository repository;
+
+    /**
+     * 操作日志缓存
+     */
     private final OperationLogCache cache;
+
+    /**
+     * 操作日志国际化工具
+     */
     private final OperationLogI18nUtil i18nUtil;
 
+    /**
+     * 构造方法，注入依赖的服务
+     *
+     * @param repository 操作日志仓库
+     * @param cache 操作日志缓存
+     * @param i18nUtil 操作日志国际化工具
+     */
     public OperationLogService(OperationLogRepository repository,
                                OperationLogCache cache,
                                OperationLogI18nUtil i18nUtil) {
@@ -36,7 +64,9 @@ public class OperationLogService {
     }
 
     /**
-     * 同步添加操作日志
+     * 同步添加操作日志，直接写入数据库
+     *
+     * @param log 操作日志对象
      */
     public void logOperation(OperationLog log) {
         // 处理国际化描述
@@ -50,7 +80,9 @@ public class OperationLogService {
     }
 
     /**
-     * 异步添加操作日志（写入缓存）
+     * 异步添加操作日志，写入缓存队列
+     *
+     * @param log 操作日志对象
      */
     public void logOperationAsync(OperationLog log) {
         // 处理国际化描述
@@ -65,6 +97,16 @@ public class OperationLogService {
 
     /**
      * 批量查询操作日志
+     *
+     * @param offset 查询偏移量
+     * @param limit 查询数量限制
+     * @param keyword 关键字搜索
+     * @param startTime 操作开始时间
+     * @param endTime 操作结束时间
+     * @param result 操作结果过滤
+     * @param sortBy 排序字段
+     * @param sortOrder 排序方向
+     * @return 操作日志列表
      */
     public List<OperationLog> queryLogs(Integer offset, Integer limit, String keyword,
                                          LocalDateTime startTime, LocalDateTime endTime,
@@ -85,6 +127,12 @@ public class OperationLogService {
 
     /**
      * 统计操作日志数量
+     *
+     * @param keyword 关键字搜索
+     * @param startTime 操作开始时间
+     * @param endTime 操作结束时间
+     * @param result 操作结果过滤
+     * @return 日志总数
      */
     public long countLogs(String keyword, LocalDateTime startTime, LocalDateTime endTime,
                           OperationResult result) {
@@ -92,7 +140,16 @@ public class OperationLogService {
     }
 
     /**
-     * 导出操作日志到 Excel
+     * 导出操作日志到 Excel 文件
+     *
+     * @param response HTTP响应对象
+     * @param offset 查询偏移量
+     * @param limit 查询数量限制
+     * @param keyword 关键字搜索
+     * @param startTime 操作开始时间
+     * @param endTime 操作结束时间
+     * @param result 操作结果过滤
+     * @throws IOException IO异常
      */
     public void exportLogs(HttpServletResponse response, Integer offset, Integer limit,
                            String keyword, LocalDateTime startTime, LocalDateTime endTime,
@@ -121,6 +178,8 @@ public class OperationLogService {
 
     /**
      * 获取当前语言环境
+     *
+     * @return 当前语言环境字符串
      */
     public String getCurrentLocale() {
         return LocaleContextHolder.getLocale().toString();

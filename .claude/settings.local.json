@@ -20,7 +20,9 @@
       "Bash(git:*)",
       "Bash(claude config:*)",
       "Bash(gh api:*)",
-      "Bash(mv:*)"
+      "Bash(mv:*)",
+      "Bash(opsx new:*)"
     ]
-  }
+  },
+  "outputStyle": "default"
 }

@@ -4,7 +4,10 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 /**
- * 操作日志实体类
+ * 操作日志实体类，用于记录系统中的操作行为。
+ *
+ * @author SmartKit
+ * @since 1.0.0
  */
 @Data
 public class OperationLog {
