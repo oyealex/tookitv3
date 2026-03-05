@@ -21,7 +21,11 @@
       "Bash(claude config:*)",
       "Bash(gh api:*)",
       "Bash(mv:*)",
-      "Bash(opsx new:*)"
+      "Bash(opsx new:*)",
+      "Bash(./opsx-zh/propose.md:*)",
+      "WebSearch",
+      "Bash(java -jar plantuml.jar --svg --pipe)",
+      "Bash(java -jar plantuml.jar --png --pipe)"
     ]
   },
   "outputStyle": "default"
