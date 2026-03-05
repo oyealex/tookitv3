@@ -79,6 +79,10 @@ public class OperationLogRepository {
                 if (entity.getCreatedAt() == null) {
                     entity.setCreatedAt(now);
                 }
+                // objectId 为必填字段，如果为 null 则设置为空字符串
+                if (entity.getObjectId() == null) {
+                    entity.setObjectId("");
+                }
                 return entity;
             })
             .toList();
