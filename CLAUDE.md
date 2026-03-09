@@ -79,3 +79,5 @@ src/main/java/com/smartkit/toolbox/
 - 始终使用中文撰写文档
 - 代码中的注释始终使用中文
 - 代码和专业词汇保持使用英文
+- 生成的Java代码的所有public、protected、package级别的类、方法和字段必须添加JavaDoc
+- 日志内容必须使用英文

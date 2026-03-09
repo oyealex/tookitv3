@@ -46,7 +46,12 @@ public enum DeviceErrorCode {
     /**
      * 设备类型无效
      */
-    INVALID_DEVICE_TYPE(1007, "error.device.type.invalid");
+    INVALID_DEVICE_TYPE(1007, "error.device.type.invalid"),
+
+    /**
+     * 设备已被锁定
+     */
+    DEVICE_LOCKED(1008, "error.device.locked");
 
     /**
      * 错误码

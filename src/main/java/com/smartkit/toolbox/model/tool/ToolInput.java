@@ -1,5 +1,6 @@
 package com.smartkit.toolbox.model.tool;
 
+import com.smartkit.toolbox.model.scenario.ScenarioStepExecution;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -40,4 +41,14 @@ public class ToolInput {
      * 设备列表
      */
     private List<DeviceInfo> devices;
+
+    /**
+     * 场景信息（仅在场景模式下存在）
+     */
+    private ScenarioInfo scenario;
+
+    /**
+     * 前置工具执行结果（仅在场景模式下且不是第一步时存在）
+     */
+    private PreviousResult previousResult;
 }

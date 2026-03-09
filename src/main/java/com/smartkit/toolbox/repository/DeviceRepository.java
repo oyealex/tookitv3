@@ -168,10 +168,17 @@ public class DeviceRepository {
      * @param ips 设备IP地址列表
      * @return 删除结果数组
      */
-    @Transactional
     public int[] deleteByIps(List<String> ips) {
         jpaRepository.deleteByIpIn(ips);
         return new int[ips.size()];
+    }
+
+    /**
+     * 删除所有设备
+     */
+    @Transactional
+    public void deleteAll() {
+        jpaRepository.deleteAll();
     }
 
     /**

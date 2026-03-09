@@ -25,7 +25,8 @@
       "Bash(./opsx-zh/propose.md:*)",
       "WebSearch",
       "Bash(java -jar plantuml.jar --svg --pipe)",
-      "Bash(java -jar plantuml.jar --png --pipe)"
+      "Bash(java -jar plantuml.jar --png --pipe)",
+      "Bash(sed:*)"
     ]
   },
   "outputStyle": "default"

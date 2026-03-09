@@ -50,4 +50,9 @@ public class DeviceQueryDTO {
      * 设备版本（模糊匹配）
      */
     private String version;
+
+    /**
+     * 是否已锁定（null-不限，true-已锁定，false-未锁定）
+     */
+    private Boolean locked;
 }

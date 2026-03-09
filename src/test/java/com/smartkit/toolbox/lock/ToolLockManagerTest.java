@@ -1,6 +1,7 @@
 package com.smartkit.toolbox.lock;
 
 import com.smartkit.toolbox.service.DeviceLockService;
+import com.smartkit.toolbox.model.DeviceLockInfo;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -63,13 +64,28 @@ class ToolLockManagerTest {
             }
 
             @Override
+            public void lockDevices(List<String> ips, String lockSource) throws LockException {
+                // 模拟锁定成功
+            }
+
+            @Override
             public void unlockDevices(List<String> ips) {
+                // 模拟解锁成功
+            }
+
+            @Override
+            public void unlockBySource(String lockSource) {
                 // 模拟解锁成功
             }
 
             @Override
             public boolean isLocked(String ip) {
                 return false;
+            }
+
+            @Override
+            public DeviceLockInfo getLockInfo(String ip) {
+                return null;
             }
         };
 
@@ -91,12 +107,26 @@ class ToolLockManagerTest {
             }
 
             @Override
+            public void lockDevices(List<String> ips, String lockSource) throws LockException {
+                throw new LockException("设备已被锁定");
+            }
+
+            @Override
             public void unlockDevices(List<String> ips) {
+            }
+
+            @Override
+            public void unlockBySource(String lockSource) {
             }
 
             @Override
             public boolean isLocked(String ip) {
                 return true;
+            }
+
+            @Override
+            public DeviceLockInfo getLockInfo(String ip) {
+                return null;
             }
         };
 
