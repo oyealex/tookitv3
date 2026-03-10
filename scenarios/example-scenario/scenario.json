@@ -1,0 +1,21 @@
+{
+  "id": "example-scenario",
+  "name": "示例场景",
+  "description": "一个包含多个子工具执行的示例场景",
+  "steps": [
+    {
+      "toolId": "device-inspection",
+      "name": "设备巡检"
+    },
+    {
+      "toolId": "config-backup",
+      "name": "配置备份"
+    },
+    {
+      "toolId": "health-check",
+      "name": "健康检查"
+    }
+  ],
+  "allowSkipOnFailure": false,
+  "allowSkipStep": false
+}
