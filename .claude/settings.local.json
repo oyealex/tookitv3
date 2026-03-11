@@ -29,5 +29,8 @@
       "Bash(sed:*)"
     ]
   },
-  "outputStyle": "default"
+  "outputStyle": "default",
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true
+  }
 }
