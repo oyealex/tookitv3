@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-本文件为 Claude Code (claude.ai/code) 在本项目中工作时提供指导。
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## 项目概述
 
@@ -39,21 +39,44 @@ mvn validate
 src/main/java/com/smartkit/toolbox/
 ├── controller/     # REST API 端点 (@RestController)
 ├── service/        # 业务逻辑 (@Service)
-├── repository/     # 数据访问 (JDBC)
+│   └── scenario/   # 场景模块服务
+├── repository/     # 数据访问 (JPA Repository)
+├── entity/         # JPA 实体类
 ├── model/          # 领域模型、DTO、枚举
-│   └── dto/        # API 请求/响应的数据传输对象
+│   ├── dto/        # API 请求/响应的数据传输对象
+│   ├── tool/       # 工具相关模型
+│   └── scenario/   # 场景相关模型
 ├── config/         # Spring 配置类
-├── common/         # 共享工具（异常、处理器）
-└── util/           # 工具类
+├── common/         # 共享工具（异常、处理器、常量）
+├── util/           # 工具类
+├── aspect/         # AOP 切面（操作日志）
+├── annotation/     # 自定义注解
+├── scanner/        # 工具扫描器
+│   └── impl/       # 扫描器实现
+├── invoker/        # 工具执行器
+│   └── impl/       # 执行器实现
+├── manager/        # 管理器（ToolManager）
+├── monitor/        # 监控接口
+│   └── impl/       # 监控实现
+└── lock/           # 工具锁管理
 ```
 
 ### 核心组件
 
 - **REST API**：使用 `@RestController` 和统一的 `Result<T>` 响应格式
-- **数据库**：通过 Spring JDBC 使用 SQLite（`data/toolbox.db`）
-- **Excel 导入导出**：使用 Apache POI EasyExcel 处理设备数据
+- **数据库**：JPA + SQLite（`data/toolbox.db`），使用 Hibernate SQLiteDialect
+- **Excel 导入导出**：使用 Alibaba EasyExcel 处理设备数据
 - **API 文档**：SpringDoc OpenAPI，Swagger UI 位于 `/swagger-ui.html`
 - **国际化**：消息资源位于 `i18n/messages*.properties`
+- **操作日志**：通过 AOP 切面自动记录 API 调用
+
+### 子工具模块 (tools/)
+
+项目支持动态加载子工具，工具配置位于 `tools/` 目录，包含 `tool.json` 配置文件。
+
+### 场景模块
+
+支持场景编排功能，场景定义存储在 `scenarios/` 目录。
 
 ### OpenSpec 工作流
 
@@ -65,16 +88,17 @@ src/main/java/com/smartkit/toolbox/
 - `/opsx:archive` - 归档已完成的变更
 - `/opsx:explore` - 在创建变更前探索想法
 
-变更存储在 `openspec/changes/<变更名称>/`，包含 `proposal.md`、`design.md` 和 `tasks.md` 等制品。
+变更存储在 `openspec/changes/<变更名称>/`，包含 `proposal.md`、`design.md` 和 `tasks.md` 等制品。已完成的变更归档在 `openspec/changes/archive/`。
 
 ## 配置
 
-- **端口**：8080（在 `application.yml` 中配置）
+- **端口**：8081（在 `application.yml` 中配置）
 - **数据库**：`data/toolbox.db`（SQLite）
 - **API 文档**：位于 `/v3/api-docs`
 - **Swagger UI**：位于 `/swagger-ui.html`
 
 ## 必须遵循的规则
+
 - 始终使用中文与用户交流
 - 始终使用中文撰写文档
 - 代码中的注释始终使用中文
